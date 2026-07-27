@@ -4,22 +4,15 @@ import { useBrand } from "../context/BrandContext";
 import { useProposal } from "../context/ProposalContext";
 
 const Footer = () => {
-  const { brand } = useBrand();
+  // const { brand } = useBrand();
   const { proposal } = useProposal();
 
   return (
     <div className="proposal-footer">
       <Paragraph>
-        © {new Date().getFullYear()} {brand.companyName || proposal.companyName}
+        © {new Date().getFullYear()}{" "}
+        {proposal.companyName || "Element Proposal Studio"}
       </Paragraph>
-
-      {brand.companyWebsite && <Paragraph>{brand.companyWebsite}</Paragraph>}
-
-      {brand.companyEmail && <Paragraph>{brand.companyEmail}</Paragraph>}
-
-      {brand.companyPhone && <Paragraph>{brand.companyPhone}</Paragraph>}
-
-      {brand.companyAddress && <Paragraph>{brand.companyAddress}</Paragraph>}
     </div>
   );
 };

@@ -10,6 +10,7 @@ import { HistoryProvider } from "./context/HistoryContext";
 import { DocumentProvider } from "./context/DocumentContext";
 import { BrandProvider } from "./context/BrandContext";
 import { AIProvider } from "./context/AIContext";
+import { InspectorProvider } from "./context/InspectorContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -20,9 +21,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <TemplateProvider>
               <SectionProvider>
                 <HistoryProvider>
-                  <AIProvider>
-                    <App />
-                  </AIProvider>
+                  <InspectorProvider>
+                    <AIProvider>
+                      <App />
+                    </AIProvider>
+                  </InspectorProvider>
                 </HistoryProvider>
               </SectionProvider>
             </TemplateProvider>

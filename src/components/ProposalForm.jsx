@@ -22,15 +22,17 @@ const ProposalForm = () => {
   };
 
   const [errors, setErrors] = useState({});
-  const validation = validateProposal(proposal);
-  const [error, setError] = useEffect(() => {
-    if (Object.keys(validation).length) {
-      setError(validation);
-      return;
-    }
 
-    setErrors({});
-  });
+  (useEffect(() => {
+    const validation = validateProposal(proposal);
+
+    if (Object.keys(validation).length) {
+      setErrors(validation);
+    } else {
+      setErrors({});
+    }
+  }),
+    [proposal]);
 
   return (
     <div className="proposal-form">

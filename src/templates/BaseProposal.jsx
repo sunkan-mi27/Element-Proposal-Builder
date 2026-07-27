@@ -14,6 +14,7 @@ import { useBrand } from "../context/BrandContext";
 import themes from "./themes";
 import "../styles/proposalDocument.css";
 import Footer from "../components/Footer";
+import { useInspector } from "../context/InspectorContext";
 
 const BaseProposal = ({ theme = "agency" }) => {
   const { proposal } = useProposal();
@@ -22,6 +23,7 @@ const BaseProposal = ({ theme = "agency" }) => {
   const { brand } = useBrand();
 
   const currentTheme = themes[theme] || themes.agency;
+  const { setSelected } = useInspector();
 
   const headingStyle = {
     color: brand.primaryColor || currentTheme.primary,
@@ -31,7 +33,15 @@ const BaseProposal = ({ theme = "agency" }) => {
   const sectionMap = {
     summary: (
       <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "summary-heading",
+              type: "Heading",
+            })
+          }
+        >
           Executive Summary
         </Heading>
 
@@ -47,7 +57,15 @@ const BaseProposal = ({ theme = "agency" }) => {
 
     scope: (
       <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "scope-heading",
+              type: "Heading",
+            })
+          }
+        >
           Scope of Work
         </Heading>
 
@@ -63,7 +81,15 @@ const BaseProposal = ({ theme = "agency" }) => {
 
     timeline: (
       <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "timeline-heading",
+              type: "Heading",
+            })
+          }
+        >
           Timeline
         </Heading>
 
@@ -75,7 +101,15 @@ const BaseProposal = ({ theme = "agency" }) => {
 
     investment: (
       <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "investment-heading",
+              type: "Heading",
+            })
+          }
+        >
           Investment
         </Heading>
 
@@ -93,7 +127,15 @@ const BaseProposal = ({ theme = "agency" }) => {
 
     payment: (
       <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "payment-heading",
+              type: "Heading",
+            })
+          }
+        >
           Payment Terms
         </Heading>
 
@@ -241,7 +283,15 @@ const BaseProposal = ({ theme = "agency" }) => {
           {proposal.coverSubtitle}
         </Paragraph>
 
-        <Heading style={headingStyle}>
+        <Heading
+          style={headingStyle}
+          onClick={() =>
+            setSelected({
+              id: "title",
+              type: "Heading",
+            })
+          }
+        >
           {proposal.projectName || "Website Redesign Proposal"}
         </Heading>
 

@@ -1,42 +1,41 @@
-import { useState } from "react";
+import { DndContext, closestCenter } from "@dnd-kit/core";
+
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+
 import { useSections } from "../context/SectionContext";
-import "../styles/sectionManager.css";
+import SortableSection from "./SortableSection";
 
 const SectionManager = () => {
   const { sections, setSections } = useSections();
 
-  const [dragIndex, setDragIndex] = useState(null);
+  const handleDragEnd = ({ active, over }) => {
+    if (!over || active.id === over.id) return;
 
-  const handleDrop = (dropIndex) => {
-    const copy = [...sections];
+    const oldIndex = sections.findIndex((item) => item.id === active.id);
 
-    const dragged = copy[dragIndex];
+    const newIndex = sections.findIndex((item) => item.id === over.id);
 
-    copy.splice(dragIndex, 1);
-
-    copy.splice(dropIndex, 0, dragged);
-
-    setSections(copy);
+    setSections(arrayMove(sections, oldIndex, newIndex));
   };
 
   return (
-    <div className="section-manager">
-      <h3>📦 Section Manager</h3>
+    <div>
+      <h3>Section Manager</h3>
 
-      {sections.map((section, index) => (
-        <div
-          key={section.id}
-          className="section-item"
-          draggable
-          onDragStart={() => setDragIndex(index)}
-          onDragOver={(e) => e.preventDefault()}
-          onDrop={() => handleDrop(index)}
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext
+          items={sections}
+          strategy={verticalListSortingStrategy}
         >
-          <span>☰</span>
-
-          <p>{section.title}</p>
-        </div>
-      ))}
+          {sections.map((section) => (
+            <SortableSection key={section.id} section={section} />
+          ))}
+        </SortableContext>
+      </DndContext>
     </div>
   );
 };

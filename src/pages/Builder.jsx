@@ -10,7 +10,8 @@ import VersionHistory from "../components/VersionHistory";
 import SaveVersionButton from "../components/SaveVersionButton";
 import useAutosave from "../hooks/useAutosave";
 import usePersistence from "../hooks/usePersistence";
-import AIWorkspace from "../components/AIWorkspace";
+import AIStudio from "../components/AIStudio";
+import PropertyInspector from "../components/PropertyInspector";
 import "../styles/builder.css";
 
 const Builder = () => {
@@ -23,7 +24,7 @@ const Builder = () => {
 
       <div className="workspace">
         <aside className="workspace-left">
-          <AIWorkspace />
+          <AIStudio />
           <TemplateSelector />
           <BlockLibrary />
           <ProposalBlocks />
@@ -35,7 +36,13 @@ const Builder = () => {
         </aside>
 
         <section className="workspace-right">
-          <DocumentRenderer />
+          <main>
+            <DocumentRenderer />
+          </main>
+
+          <aside>
+            <PropertyInspector />
+          </aside>
         </section>
       </div>
     </div>
