@@ -1,0 +1,48 @@
+.proposal-document {
+  max-width: 900px;
+  margin: auto;
+  padding: 50px;
+  background: #fff;
+}
+
+.proposal-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.proposal-section {
+  margin: 40px 0;
+}
+
+.proposal-section h2 {
+  margin-bottom: 15px;
+}
+
+.proposal-footer {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.signature-area {
+  margin-top: 35px;
+}
+
+.cover-image {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.logo {
+  margin-bottom: 20px;
+}

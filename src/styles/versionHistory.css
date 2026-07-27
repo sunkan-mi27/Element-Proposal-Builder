@@ -1,0 +1,39 @@
+.version-history {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 24px;
+}
+
+.empty-history {
+  color: #9ca3af;
+  margin-top: 20px;
+}
+
+.history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  margin-top: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.history-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.history-actions button {
+  border: none;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: #fff;
+}

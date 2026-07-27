@@ -1,0 +1,38 @@
+.proposal-insights {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.insight-card {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 14px;
+  border-left: 5px solid;
+}
+
+.insight-card.success {
+  background: #ecfdf5;
+  border-color: #10b981;
+}
+
+.insight-card.warning {
+  background: #fffbeb;
+  border-color: #f59e0b;
+}
+
+.insight-card.error {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
+
+.insight-card h4 {
+  margin-bottom: 6px;
+}
+
+.insight-card p {
+  color: #6b7280;
+}

@@ -1,0 +1,41 @@
+.opportunity-radar {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.opportunity-radar p {
+  color: #6b7280;
+  margin: 8px 0 20px;
+}
+
+.opportunity-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  transition: 0.3s;
+}
+
+.opportunity-card:hover {
+  transform: translateY(-3px);
+}
+
+.opportunity-card h4 {
+  margin-bottom: 6px;
+}
+
+.opportunity-card small {
+  color: #6b7280;
+}
+
+.opportunity-card span {
+  font-weight: 700;
+  color: #10b981;
+}

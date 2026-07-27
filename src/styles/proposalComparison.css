@@ -1,0 +1,45 @@
+s.proposal-comparison {
+  margin-top: 20px;
+  background: #fff;
+  padding: 24px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.compare-card {
+  margin: 20px 0;
+}
+
+.compare-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.compare-bar {
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.your-score {
+  position: absolute;
+  height: 100%;
+  background: #10b981;
+}
+
+.average-score {
+  position: absolute;
+  height: 4px;
+  top: 4px;
+  background: #94a3b8;
+}
+
+.compare-card small {
+  display: block;
+  margin-top: 8px;
+  color: #6b7280;
+}

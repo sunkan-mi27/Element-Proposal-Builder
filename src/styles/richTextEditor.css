@@ -1,0 +1,24 @@
+.rich-editor {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background: #f8f8f8;
+}
+
+.toolbar button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.ProseMirror {
+  min-height: 180px;
+  padding: 15px;
+  outline: none;
+}

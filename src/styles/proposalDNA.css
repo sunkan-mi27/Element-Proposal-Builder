@@ -1,0 +1,35 @@
+.proposal-dna {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.dna-item {
+  margin: 18px 0;
+}
+
+.dna-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.dna-header strong {
+  color: #10b981;
+}
+
+.dna-bar {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.dna-fill {
+  height: 100%;
+  background: #10b981;
+  transition: 0.5s;
+}

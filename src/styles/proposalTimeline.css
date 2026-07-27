@@ -1,0 +1,42 @@
+.proposal-timeline {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 18px 0;
+}
+
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d1d5db;
+  flex-shrink: 0;
+}
+
+.timeline-dot.active {
+  background: #10b981;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.5);
+}
+
+.timeline-content {
+  border-left: 2px solid #e5e7eb;
+  padding-left: 16px;
+}
+
+.timeline-content small {
+  color: #6b7280;
+}
+
+.timeline-content h4 {
+  margin-top: 4px;
+  color: #111827;
+}

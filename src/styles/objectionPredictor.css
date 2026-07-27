@@ -1,0 +1,42 @@
+.objection-predictor {
+  margin-top: 20px;
+  padding: 24px;
+  background: #fff;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.objection-card {
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  margin-top: 16px;
+}
+
+.objection-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.objection-top span {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.objection-card p {
+  color: #6b7280;
+  margin-bottom: 14px;
+}
+
+.objection-card button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #10b981;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}

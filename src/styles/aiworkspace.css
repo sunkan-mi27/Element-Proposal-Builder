@@ -1,0 +1,31 @@
+.ai-workspace {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+}
+
+.ai-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.ai-tabs button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #f2f2f2;
+}
+
+.ai-tabs button.active {
+  background: #2563eb;
+  color: white;
+}
+
+.ai-panel {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
