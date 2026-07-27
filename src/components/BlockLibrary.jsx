@@ -2,13 +2,13 @@ import { useBlocks } from "../context/BlocksContext";
 import "../styles/blockLibrary.css";
 
 const library = [
-  { key: "summary", title: "Executive Summary" },
-  { key: "scope", title: "Scope of Work" },
-  { key: "timeline", title: "Timeline" },
-  { key: "investment", title: "Investment" },
-  { key: "payment", title: "Payment Terms" },
-  { key: "about", title: "Why Choose Us" },
-  { key: "nextSteps", title: "Next Steps" },
+  { key: "summary", title: "📝 Executive Summary" },
+  { key: "scope", title: "📋 Scope of Work" },
+  { key: "timeline", title: "📅 Timeline" },
+  { key: "investment", title: "💰 Investment" },
+  { key: "payment", title: "💳 Payment Terms" },
+  { key: "about", title: "🏢 Why Choose Us" },
+  { key: "nextSteps", title: "🚀 Next Steps" },
 ];
 
 const BlockLibrary = () => {
@@ -24,7 +24,7 @@ const BlockLibrary = () => {
           className={blocks[block.key] ? "active" : ""}
           onClick={() => toggleBlock(block.key)}
         >
-          {blocks[block.key] ? "✓" : "+"} {block.title}
+          {block.title}
         </button>
       ))}
     </div>

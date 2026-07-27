@@ -113,13 +113,17 @@ const BaseProposal = ({ theme = "agency" }) => {
           Investment
         </Heading>
 
-        {proposal.pricing.map((item) => (
-          <Paragraph key={item.id}>
-            {item.service || "Service"} — {item.quantity} × $
-            {item.price.toLocaleString()} = $
-            {(item.quantity * item.price).toLocaleString()}
-          </Paragraph>
-        ))}
+        {proposal.pricing?.length ? (
+          proposal.pricing.map((item) => (
+            <Paragraph key={item.id}>
+              {item.service || "Service"} — {item.quantity} × $
+              {item.price.toLocaleString()} = $
+              {(item.quantity * item.price).toLocaleString()}
+            </Paragraph>
+          ))
+        ) : (
+          <Paragraph>No pricing has been added yet.</Paragraph>
+        )}
 
         <Divider />
       </div>
@@ -156,8 +160,9 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         <Paragraph>
-          We help businesses deliver high-quality projects through thoughtful
-          planning and execution.
+          We specialize in delivering modern digital solutions that help
+          businesses improve efficiency, strengthen their brand, and achieve
+          measurable growth through thoughtful strategy and execution.
         </Paragraph>
 
         {proposal.teamImage && (
@@ -181,7 +186,8 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         <Paragraph>
-          "Professional, reliable, and exceeded expectations."
+          "We delivered the project ahead of schedule with clear communication
+          and measurable business results."
         </Paragraph>
 
         <Divider />
@@ -194,7 +200,11 @@ const BaseProposal = ({ theme = "agency" }) => {
           Frequently Asked Questions
         </Heading>
 
-        <Paragraph>Common client questions will appear here.</Paragraph>
+        <Paragraph>
+          Q: How long will the project take? <br />
+          A: Timelines depend on scope, but most projects are completed within
+          the agreed schedule.
+        </Paragraph>
 
         <Divider />
       </div>
@@ -207,7 +217,8 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         <Paragraph>
-          Accept this proposal and we'll schedule the project kickoff.
+          Review this proposal, approve the scope and investment, and we'll
+          schedule a kickoff meeting to begin the project.
         </Paragraph>
       </div>
     ),

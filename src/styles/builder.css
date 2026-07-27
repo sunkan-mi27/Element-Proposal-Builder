@@ -1,6 +1,6 @@
 .builder-page {
   background: #f8fafc;
-  min-height: 10vh;
+  min-height: 100vh;
   padding: 28px;
 }
 
@@ -38,16 +38,18 @@
 
 .workspace {
   display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 28px;
-  height: calc(100vh - 150px);
+  gap: 24px;
+  background: white;
+  border-radius: 22px;
+  padding: 30px;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
 }
 
 .workspace-left {
   background: white;
   border-radius: 22px;
   padding: 28px;
-  overflow: auto;
+  overflow-y: auto;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
 }
 
@@ -57,6 +59,29 @@
   padding: 35px;
   overflow: auto;
   box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+  align-items: start;
+}
+
+.workspace-right main {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 30px;
+  overflow-y: auto;
+  max-height: calc(100vh - 210px);
+}
+
+.workspace-right aside {
+  background: #ffffff;
+  border-left: 1px solid #e2e8f0;
+  padding-left: 24px;
+  overflow-y: auto;
+}
+
+.workspace-left > * {
+  margin-bottom: 24px;
 }
 
 @media (max-width: 1000px) {

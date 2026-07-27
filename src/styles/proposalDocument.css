@@ -1,48 +1,113 @@
 .proposal-document {
   max-width: 900px;
-  margin: auto;
-  padding: 50px;
-  background: #fff;
+  margin: 40px auto;
+  padding: 70px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
 }
 
 .proposal-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
+}
+
+.proposal-header h1,
+.proposal-header h2 {
+  color: #0f172a;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.proposal-header p {
+  color: #64748b;
+  font-size: 16px;
+  line-height: 1.8;
 }
 
 .proposal-section {
-  margin: 40px 0;
+  margin: 60px 0;
 }
 
 .proposal-section h2 {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+  color: #0f172a;
+  font-size: 30px;
+  font-weight: 700;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #eef2f7;
+}
+
+.proposal-section p {
+  color: #475569;
+  line-height: 1.9;
+  font-size: 16px;
 }
 
 .proposal-footer {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 1px solid #ddd;
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
   text-align: center;
+  color: #64748b;
   font-size: 14px;
-  color: #666;
 }
 
 .pricing-row {
   display: flex;
   justify-content: space-between;
-  padding: 10px 0;
-  border-bottom: 1px solid #eee;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .signature-area {
-  margin-top: 35px;
+  margin-top: 60px;
+}
+
+.signature-area img {
+  max-width: 180px;
+  margin-top: 16px;
 }
 
 .cover-image {
-  border-radius: 12px;
   overflow: hidden;
+  border-radius: 18px;
+  margin-bottom: 40px;
+}
+
+.cover-image img {
+  display: block;
+  width: 100%;
 }
 
 .logo {
-  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto 30px;
+  max-width: 160px;
+}
+
+@media (max-width: 768px) {
+  .proposal-document {
+    margin: 20px;
+    padding: 36px 24px;
+  }
+
+  .proposal-header {
+    margin-bottom: 40px;
+  }
+
+  .proposal-section {
+    margin: 40px 0;
+  }
+
+  .proposal-section h2 {
+    font-size: 24px;
+  }
+
+  .pricing-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
 }

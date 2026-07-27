@@ -7,6 +7,7 @@ import SignatureBlock from "./SignatureBlock";
 import CoverPageSettings from "./CoverPageSettings";
 import BrandSettings from "./BrandSettings";
 import { validateProposal } from "../utils/validateProposal";
+import "../styles/proposalForm.css";
 import "../styles/validation.css";
 
 const ProposalForm = () => {
@@ -23,7 +24,7 @@ const ProposalForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  (useEffect(() => {
+  useEffect(() => {
     const validation = validateProposal(proposal);
 
     if (Object.keys(validation).length) {
@@ -31,8 +32,7 @@ const ProposalForm = () => {
     } else {
       setErrors({});
     }
-  }),
-    [proposal]);
+  }, [proposal]);
 
   return (
     <div className="proposal-form">

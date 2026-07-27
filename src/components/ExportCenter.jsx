@@ -23,12 +23,7 @@ const ExportCenter = () => {
     importProposal(file, setProposal, setTemplate, setBlocks, setSections);
   };
 
-  const exportElements = () => {
-    alert("Export Elements JSON");
-  };
-
   const errors = validateProposal(proposal);
-
   const canExport = Object.keys(errors).length === 0;
 
   return (
@@ -42,11 +37,6 @@ const ExportCenter = () => {
       <button disabled={!canExport} onClick={exportHTML}>
         🌐 Export HTML
       </button>
-
-      <label className="import-btn">
-        📂 Import Proposal
-        <input type="file" accept=".json" hidden onChange={handleImport} />
-      </label>
 
       <button
         disabled={!canExport}
@@ -62,9 +52,10 @@ const ExportCenter = () => {
         🧾 Export JSON
       </button>
 
-      <button disabled={!canExport} onClick={exportElements}>
-        ⚡ Export Elements JSON
-      </button>
+      <label className="import-btn">
+        📂 Import Proposal
+        <input type="file" accept=".json" hidden onChange={handleImport} />
+      </label>
     </div>
   );
 };

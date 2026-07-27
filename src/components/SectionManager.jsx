@@ -1,13 +1,12 @@
 import { DndContext, closestCenter } from "@dnd-kit/core";
-
 import {
   SortableContext,
   verticalListSortingStrategy,
   arrayMove,
 } from "@dnd-kit/sortable";
-
 import { useSections } from "../context/SectionContext";
 import SortableSection from "./SortableSection";
+import "../styles/sectionManager.css";
 
 const SectionManager = () => {
   const { sections, setSections } = useSections();
@@ -23,7 +22,7 @@ const SectionManager = () => {
   };
 
   return (
-    <div>
+    <div className="section-manager">
       <h3>Section Manager</h3>
 
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>

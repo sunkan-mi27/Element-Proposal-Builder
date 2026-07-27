@@ -1,0 +1,71 @@
+.proposal-form {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.proposal-form h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #0f172a;
+}
+
+.proposal-form p {
+  margin: 8px 0 24px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.proposal-form h4 {
+  margin: 30px 0 14px;
+  color: #0f172a;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.proposal-form input,
+.proposal-form textarea,
+.proposal-form select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.proposal-form input:focus,
+.proposal-form textarea:focus,
+.proposal-form select:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.proposal-form button {
+  padding: 12px 18px;
+  border: none;
+  border-radius: 12px;
+  background: #2563eb;
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.proposal-form button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.proposal-form .error {
+  display: block;
+  margin: -10px 0 14px;
+  color: #dc2626;
+  font-size: 12px;
+}

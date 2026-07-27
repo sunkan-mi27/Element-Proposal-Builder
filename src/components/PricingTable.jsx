@@ -1,4 +1,5 @@
 import { useProposal } from "../context/ProposalContext";
+import "../styles/pricingTable.css";
 
 const PricingTable = () => {
   const { proposal, setProposal } = useProposal();
@@ -69,7 +70,12 @@ const PricingTable = () => {
             }
           />
 
-          <button onClick={() => removeRow(item.id)}>✕</button>
+          <button
+            onClick={() => removeRow(item.id)}
+            disabled={proposal.pricing.length === 1}
+          >
+            ✕
+          </button>
         </div>
       ))}
 
