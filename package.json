@@ -18,9 +18,10 @@
     "@unlayer/react-elements": "^0.1.20",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
+    "lucide-react": "^1.27.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router-dom": "^7.18.1"
+    "react-router-dom": "^6.30.1"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

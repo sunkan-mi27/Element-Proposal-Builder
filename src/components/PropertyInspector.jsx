@@ -7,7 +7,6 @@ import "../styles/propertyInspector.css";
 const PropertyInspector = () => {
   const { proposal, updateProposal } = useProposal();
   const { selected } = useInspector();
-  console.log(selected);
   const { styles, updateStyle } = useStyles();
 
   if (!selected) {

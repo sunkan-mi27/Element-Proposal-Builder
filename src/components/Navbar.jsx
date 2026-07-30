@@ -17,14 +17,15 @@ const Navbar = () => {
 
         {/* Navigation */}
         <nav className="nav-links">
-          <a href="#features">Features</a>
-          <a href="#templates">Templates</a>
-          <a href="#pricing">Pricing</a>
+          <Link to="/features">Features</Link>
+          <Link to="/templates">Templates</Link>
+          <Link to="/pricing">Pricing</Link>
         </nav>
 
-        {/* Buttons */}
         <div className="nav-actions">
-          <button className="signin-btn">Sign In</button>
+          <Link to="/signin" className="signin-btn">
+            Sign In
+          </Link>
 
           <Link to="/builder" className="start-btn">
             Start Building →
