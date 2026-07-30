@@ -11,6 +11,7 @@ const blockList = [
   { key: "faq", label: "FAQ" },
   { key: "about", label: "About Us" },
   { key: "nextSteps", label: "Next Steps" },
+  { key: "signature", label: "Client Acceptance" },
 ];
 
 const ProposalBlocks = () => {

@@ -11,6 +11,7 @@ import { DocumentProvider } from "./context/DocumentContext";
 import { BrandProvider } from "./context/BrandContext";
 import { AIProvider } from "./context/AIContext";
 import { InspectorProvider } from "./context/InspectorContext";
+import { StyleProvider } from "./context/StyleContext";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -22,9 +23,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               <SectionProvider>
                 <HistoryProvider>
                   <InspectorProvider>
-                    <AIProvider>
-                      <App />
-                    </AIProvider>
+                    <StyleProvider>
+                      <AIProvider>
+                        <App />
+                      </AIProvider>
+                    </StyleProvider>
                   </InspectorProvider>
                 </HistoryProvider>
               </SectionProvider>

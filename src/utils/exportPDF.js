@@ -1,72 +1,46 @@
+import html2canvas from "html2canvas";
 import { jsPDF } from "jspdf";
 
-export const exportPDF = (proposal) => {
-  const pdf = new jsPDF();
+export const exportPDF = async () => {
+  const proposal = document.getElementById("proposal-preview");
 
-  let y = 20;
+  if (!proposal) {
+    alert("Proposal preview not found.");
+    return;
+  }
 
-  pdf.setFont("helvetica", "bold");
-  pdf.setFontSize(22);
-  pdf.text(proposal.projectName || "Proposal", 20, y);
+  const canvas = await html2canvas(proposal, {
+    scale: 2,
+    useCORS: true,
+    backgroundColor: "#ffffff",
+  });
 
-  y += 15;
+  const imgData = canvas.toDataURL("image/png");
 
-  pdf.setFontSize(12);
-  pdf.setFont("helvetica", "normal");
+  const pdf = new jsPDF("p", "mm", "a4");
 
-  pdf.text(`Prepared For: ${proposal.clientName || ""}`, 20, y);
-  y += 10;
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
 
-  pdf.text(`Company: ${proposal.companyName || ""}`, 20, y);
-  y += 15;
+  const imgWidth = pdfWidth;
+  const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-  pdf.setFont("helvetica", "bold");
+  let heightLeft = imgHeight;
+  let position = 0;
 
-  pdf.text("Executive Summary", 20, y);
-  y += 8;
+  pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
 
-  pdf.setFont("helvetica", "normal");
-  pdf.text(pdf.splitTextToSize(proposal.description || "", 170), 20, y);
+  heightLeft -= pdfHeight;
 
-  y += 30;
+  while (heightLeft > 0) {
+    position = heightLeft - imgHeight;
 
-  pdf.setFont("helvetica", "bold");
-  pdf.text("Scope of Work", 20, y);
+    pdf.addPage();
 
-  y += 8;
+    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
 
-  pdf.setFont("helvetica", "normal");
-  pdf.text(pdf.splitTextToSize(proposal.deliverables || "", 170), 20, y);
+    heightLeft -= pdfHeight;
+  }
 
-  y += 30;
-
-  pdf.setFont("helvetica", "bold");
-  pdf.text("Timeline", 20, y);
-
-  y += 8;
-
-  pdf.setFont("helvetica", "normal");
-  pdf.text(proposal.timeline || "", 20, y);
-
-  y += 15;
-
-  pdf.setFont("helvetica", "bold");
-  pdf.text("Investment", 20, y);
-
-  y += 8;
-
-  pdf.setFont("helvetica", "normal");
-  pdf.text(proposal.budget || "", 20, y);
-
-  y += 15;
-
-  pdf.setFont("helvetica", "bold");
-  pdf.text("Payment Terms", 20, y);
-
-  y += 8;
-
-  pdf.setFont("helvetica", "normal");
-  pdf.text(pdf.splitTextToSize(proposal.paymentTerms || "", 170), 20, y);
-
-  pdf.save(`${proposal.projectName || "proposal"}.pdf`);
+  pdf.save("Proposal.pdf");
 };

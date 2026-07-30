@@ -3,15 +3,15 @@ import RichTextEditor from "./RichTextEditor";
 import PricingTable from "./PricingTable";
 import { useProposal } from "../context/ProposalContext";
 import ImageUploader from "./ImageUploader";
-import SignatureBlock from "./SignatureBlock";
 import CoverPageSettings from "./CoverPageSettings";
 import BrandSettings from "./BrandSettings";
 import { validateProposal } from "../utils/validateProposal";
+import SignaturePad from "./SignaturePad";
 import "../styles/proposalForm.css";
 import "../styles/validation.css";
 
 const ProposalForm = () => {
-  const { proposal, setProposal } = useProposal();
+  const { proposal, setProposal, updateProposal } = useProposal();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -161,7 +161,70 @@ const ProposalForm = () => {
         onChange={handleChange}
       />
 
-      <SignatureBlock />
+      <label>About Us</label>
+
+      <textarea
+        name="aboutUs"
+        value={proposal.aboutUs}
+        onChange={handleChange}
+        rows={5}
+      />
+
+      <label>Testimonials</label>
+
+      <textarea
+        name="testimonials"
+        value={proposal.testimonials}
+        onChange={handleChange}
+        rows={5}
+      />
+
+      <label>FAQ</label>
+
+      <textarea
+        name="faq"
+        value={proposal.faq}
+        onChange={handleChange}
+        rows={5}
+      />
+
+      <label>Next Steps</label>
+
+      <textarea
+        name="nextSteps"
+        value={proposal.nextSteps}
+        onChange={handleChange}
+        rows={5}
+      />
+
+      <label>Currency</label>
+
+      <select name="currency" value={proposal.currency} onChange={handleChange}>
+        <option value="USD">$ USD</option>
+        <option value="EUR">€ EUR</option>
+        <option value="GBP">£ GBP</option>
+        <option value="NGN">₦ NGN</option>
+      </select>
+
+      <label>Discount (%)</label>
+
+      <input
+        type="number"
+        name="discount"
+        value={proposal.discount}
+        onChange={handleChange}
+      />
+
+      <label>Tax (%)</label>
+
+      <input
+        type="number"
+        name="tax"
+        value={proposal.tax}
+        onChange={handleChange}
+      />
+
+      <SignaturePad />
       <BrandSettings />
       <CoverPageSettings />
     </div>

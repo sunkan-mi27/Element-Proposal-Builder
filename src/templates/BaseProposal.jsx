@@ -1,40 +1,76 @@
-import {
-  Document,
-  Heading,
-  Paragraph,
-  Divider,
-  Image,
-} from "@unlayer/react-elements";
+import { Heading, Paragraph, Divider, Image } from "@unlayer/react-elements";
 
 import { useProposal } from "../context/ProposalContext";
 import { useBlocks } from "../context/BlocksContext";
 import { useSections } from "../context/SectionContext";
-import HtmlContent from "../components/HtmlContent";
 import { useBrand } from "../context/BrandContext";
-import themes from "./themes";
-import "../styles/proposalDocument.css";
-import Footer from "../components/Footer";
 import { useInspector } from "../context/InspectorContext";
+import { useStyles } from "../context/StyleContext";
+
+import HtmlContent from "../components/HtmlContent";
+import Footer from "../components/Footer";
+import themes from "./themes";
+
+import "../styles/proposalDocument.css";
 
 const BaseProposal = ({ theme = "agency" }) => {
   const { proposal } = useProposal();
   const { blocks } = useBlocks();
   const { sections } = useSections();
   const { brand } = useBrand();
+  const { setSelected } = useInspector();
+  const { styles } = useStyles();
 
   const currentTheme = themes[theme] || themes.agency;
-  const { setSelected } = useInspector();
+
+  const sectionStyle = {
+    background: currentTheme.cardBackground || "transparent",
+    borderRadius: currentTheme.borderRadius || 0,
+    padding: currentTheme.sectionPadding || 0,
+    marginBottom: 30,
+    boxShadow: currentTheme.shadow || "none",
+    border: currentTheme.border || "none",
+  };
 
   const headingStyle = {
     color: brand.primaryColor || currentTheme.primary,
     fontFamily: currentTheme.headingFont,
   };
 
+  const headingStyles = {
+    ...headingStyle,
+    ...styles.Heading,
+  };
+
+  const paragraphStyles = {
+    ...styles.Paragraph,
+  };
+
+  const imageStyles = {
+    ...styles.Image,
+  };
+
+  const subtotal = proposal.pricing.reduce(
+    (sum, item) => sum + item.quantity * item.price,
+    0,
+  );
+
+  const discountAmount = subtotal * ((proposal.discount || 0) / 100);
+
+  const taxedSubtotal = subtotal - discountAmount;
+
+  const taxAmount = taxedSubtotal * ((proposal.tax || 0) / 100);
+
+  const grandTotal = taxedSubtotal + taxAmount;
+
+  const hasServices = proposal.pricing.some(
+    (item) => item.service.trim() !== "",
+  );
+
   const sectionMap = {
     summary: (
-      <div className="proposal-section">
-        <Heading
-          style={headingStyle}
+      <div className="proposal-section" style={sectionStyle}>
+        <div
           onClick={() =>
             setSelected({
               id: "summary-heading",
@@ -42,13 +78,32 @@ const BaseProposal = ({ theme = "agency" }) => {
             })
           }
         >
-          Executive Summary
-        </Heading>
-
+          <Heading style={headingStyles}>Executive Summary</Heading>
+        </div>
         {proposal.description ? (
-          <HtmlContent html={proposal.description} />
+          <div
+            onClick={() =>
+              setSelected({
+                id: "summary-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            <HtmlContent html={proposal.description} />
+          </div>
         ) : (
-          <Paragraph>Your executive summary will appear here.</Paragraph>
+          <div
+            onClick={() =>
+              setSelected({
+                id: "summary-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            <Paragraph style={paragraphStyles}>
+              Your executive summary will appear here.
+            </Paragraph>
+          </div>
         )}
 
         <Divider />
@@ -56,9 +111,9 @@ const BaseProposal = ({ theme = "agency" }) => {
     ),
 
     scope: (
-      <div className="proposal-section">
+      <div className="proposal-section" style={sectionStyle}>
         <Heading
-          style={headingStyle}
+          style={headingStyles}
           onClick={() =>
             setSelected({
               id: "scope-heading",
@@ -70,9 +125,28 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         {proposal.deliverables ? (
-          <HtmlContent html={proposal.deliverables} />
+          <div
+            onClick={() =>
+              setSelected({
+                id: "scope-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            <HtmlContent html={proposal.deliverables} />
+          </div>
         ) : (
-          <Paragraph>Scope of work goes here.</Paragraph>
+          <Paragraph
+            style={paragraphStyles}
+            onClick={() =>
+              setSelected({
+                id: "scope-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            Scope of work goes here.
+          </Paragraph>
         )}
 
         <Divider />
@@ -80,9 +154,9 @@ const BaseProposal = ({ theme = "agency" }) => {
     ),
 
     timeline: (
-      <div className="proposal-section">
+      <div className="proposal-section" style={sectionStyle}>
         <Heading
-          style={headingStyle}
+          style={headingStyles}
           onClick={() =>
             setSelected({
               id: "timeline-heading",
@@ -93,16 +167,26 @@ const BaseProposal = ({ theme = "agency" }) => {
           Timeline
         </Heading>
 
-        <Paragraph>{proposal.timeline || "4 Weeks"}</Paragraph>
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "timeline-text",
+              type: "Paragraph",
+            })
+          }
+        >
+          {proposal.timeline || "4 Weeks"}
+        </Paragraph>
 
         <Divider />
       </div>
     ),
 
     investment: (
-      <div className="proposal-section">
+      <div className="proposal-section" style={sectionStyle}>
         <Heading
-          style={headingStyle}
+          style={headingStyles}
           onClick={() =>
             setSelected({
               id: "investment-heading",
@@ -114,25 +198,105 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         {proposal.pricing?.length ? (
-          proposal.pricing.map((item) => (
-            <Paragraph key={item.id}>
-              {item.service || "Service"} — {item.quantity} × $
-              {item.price.toLocaleString()} = $
-              {(item.quantity * item.price).toLocaleString()}
-            </Paragraph>
-          ))
+          <>
+            <div
+              className="pricing-table"
+              onClick={() =>
+                setSelected({
+                  id: "pricing-table",
+                  type: "Pricing",
+                })
+              }
+            >
+              <div className="pricing-header">
+                <span>Service</span>
+                <span>Qty</span>
+                <span>Unit Price</span>
+                <span>Total</span>
+              </div>
+
+              {hasServices ? (
+                proposal.pricing
+                  .filter((item) => item.service.trim() !== "")
+                  .map((item) => (
+                    <div className="pricing-item" key={item.id}>
+                      <span>{item.service || "Untitled Service"}</span>
+                      <span>{item.quantity}</span>
+
+                      <span>
+                        {proposal.currency}{" "}
+                        {Number(item.price).toLocaleString()}
+                      </span>
+
+                      <span>
+                        {proposal.currency}{" "}
+                        {(item.quantity * item.price).toLocaleString()}
+                      </span>
+                    </div>
+                  ))
+              ) : (
+                <div className="pricing-empty">No services added yet.</div>
+              )}
+            </div>
+
+            <div className="pricing-footer">
+              <div className="pricing-summary">
+                <div className="summary-row">
+                  <span>Subtotal</span>
+                  <span>
+                    {proposal.currency} {subtotal.toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="summary-row">
+                  <span>Discount</span>
+                  <span>
+                    - {proposal.currency} {discountAmount.toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="summary-row">
+                  <span>Tax</span>
+                  <span>
+                    {proposal.currency} {taxAmount.toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="summary-total">
+                  <span>Grand Total</span>
+                  <span>
+                    {proposal.currency} {grandTotal.toLocaleString()}
+                  </span>
+                </div>
+              </div>
+
+              <Paragraph
+                className="pricing-note"
+                style={paragraphStyles}
+                onClick={() =>
+                  setSelected({
+                    id: "pricing-note",
+                    type: "Paragraph",
+                  })
+                }
+              >
+                This quotation is valid for 30 days from the proposal date.
+              </Paragraph>
+            </div>
+          </>
         ) : (
-          <Paragraph>No pricing has been added yet.</Paragraph>
+          <Paragraph style={paragraphStyles}>
+            No pricing has been added yet.
+          </Paragraph>
         )}
 
         <Divider />
       </div>
     ),
-
     payment: (
-      <div className="proposal-section">
+      <div className="proposal-section" style={sectionStyle}>
         <Heading
-          style={headingStyle}
+          style={headingStyles}
           onClick={() =>
             setSelected({
               id: "payment-heading",
@@ -144,9 +308,28 @@ const BaseProposal = ({ theme = "agency" }) => {
         </Heading>
 
         {proposal.paymentTerms ? (
-          <HtmlContent html={proposal.paymentTerms} />
+          <div
+            onClick={() =>
+              setSelected({
+                id: "payment-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            <HtmlContent html={proposal.paymentTerms} />
+          </div>
         ) : (
-          <Paragraph>Payment terms will appear here.</Paragraph>
+          <Paragraph
+            style={paragraphStyles}
+            onClick={() =>
+              setSelected({
+                id: "payment-text",
+                type: "Paragraph",
+              })
+            }
+          >
+            Payment terms will appear here.
+          </Paragraph>
         )}
 
         <Divider />
@@ -154,15 +337,30 @@ const BaseProposal = ({ theme = "agency" }) => {
     ),
 
     about: (
-      <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+      <div className="proposal-section" style={sectionStyle}>
+        <Heading
+          style={headingStyles}
+          onClick={() =>
+            setSelected({
+              id: "about-heading",
+              type: "Heading",
+            })
+          }
+        >
           About Us
         </Heading>
 
-        <Paragraph>
-          We specialize in delivering modern digital solutions that help
-          businesses improve efficiency, strengthen their brand, and achieve
-          measurable growth through thoughtful strategy and execution.
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "about-text",
+              type: "Paragraph",
+            })
+          }
+        >
+          {proposal.aboutUs ||
+            "Tell your client why they should choose your company."}
         </Paragraph>
 
         {proposal.teamImage && (
@@ -170,24 +368,47 @@ const BaseProposal = ({ theme = "agency" }) => {
             src={proposal.teamImage}
             alt="Team"
             style={{
+              ...imageStyles,
               width: "100%",
               marginTop: 20,
             }}
+            onClick={() =>
+              setSelected({
+                id: "team-image",
+                type: "Image",
+              })
+            }
           />
         )}
+
         <Divider />
       </div>
     ),
 
     testimonials: (
-      <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+      <div className="proposal-section" style={sectionStyle}>
+        <Heading
+          style={headingStyles}
+          onClick={() =>
+            setSelected({
+              id: "testimonial-heading",
+              type: "Heading",
+            })
+          }
+        >
           Testimonials
         </Heading>
 
-        <Paragraph>
-          "We delivered the project ahead of schedule with clear communication
-          and measurable business results."
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "testimonial-text",
+              type: "Paragraph",
+            })
+          }
+        >
+          {proposal.testimonials || "Client testimonials will appear here."}
         </Paragraph>
 
         <Divider />
@@ -195,15 +416,29 @@ const BaseProposal = ({ theme = "agency" }) => {
     ),
 
     faq: (
-      <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+      <div className="proposal-section" style={sectionStyle}>
+        <Heading
+          style={headingStyles}
+          onClick={() =>
+            setSelected({
+              id: "faq-heading",
+              type: "Heading",
+            })
+          }
+        >
           Frequently Asked Questions
         </Heading>
 
-        <Paragraph>
-          Q: How long will the project take? <br />
-          A: Timelines depend on scope, but most projects are completed within
-          the agreed schedule.
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "faq-text",
+              type: "Paragraph",
+            })
+          }
+        >
+          {proposal.faq || "Frequently asked questions will appear here."}
         </Paragraph>
 
         <Divider />
@@ -211,30 +446,59 @@ const BaseProposal = ({ theme = "agency" }) => {
     ),
 
     nextSteps: (
-      <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
+      <div className="proposal-section" style={sectionStyle}>
+        <Heading
+          style={headingStyles}
+          onClick={() =>
+            setSelected({
+              id: "nextsteps-heading",
+              type: "Heading",
+            })
+          }
+        >
           Next Steps
         </Heading>
 
-        <Paragraph>
-          Review this proposal, approve the scope and investment, and we'll
-          schedule a kickoff meeting to begin the project.
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "nextsteps-text",
+              type: "Paragraph",
+            })
+          }
+        >
+          <HtmlContent
+            html={
+              proposal.nextSteps ||
+              "Explain what happens after the client accepts the proposal."
+            }
+          />
         </Paragraph>
+
+        <Divider />
       </div>
     ),
 
     signature: (
-      <div className="proposal-section">
-        <Heading level={2} style={headingStyle}>
-          Client Acceptance
-        </Heading>
+      <div
+        className="proposal-section"
+        style={sectionStyle}
+        onClick={() =>
+          setSelected({
+            id: "signature",
+            type: "Signature",
+          })
+        }
+      >
+        <Heading style={headingStyles}>Client Acceptance</Heading>
 
-        <Paragraph>
+        <Paragraph style={paragraphStyles}>
           <strong>Name:</strong>{" "}
           {proposal.clientNameSigned || "________________"}
         </Paragraph>
 
-        <Paragraph>
+        <Paragraph style={paragraphStyles}>
           <strong>Date:</strong> {proposal.signedDate || "________________"}
         </Paragraph>
 
@@ -243,22 +507,23 @@ const BaseProposal = ({ theme = "agency" }) => {
             src={proposal.clientSignature}
             alt="Client Signature"
             style={{
+              ...imageStyles,
               width: 180,
-              marginTop: 15,
+              marginTop: 20,
             }}
           />
         )}
+
+        <Divider />
       </div>
     ),
   };
-
   return (
-    <Document
+    <div
       className="proposal-document"
       style={{
         background: currentTheme.background,
         color: currentTheme.text,
-        padding: 40,
         fontFamily: currentTheme.bodyFont,
       }}
     >
@@ -267,38 +532,58 @@ const BaseProposal = ({ theme = "agency" }) => {
           src={proposal.coverBackground}
           alt="Cover Background"
           style={{
+            ...imageStyles,
             width: "100%",
             height: 260,
             marginBottom: 30,
           }}
+          onClick={() =>
+            setSelected({
+              id: "cover-image",
+              type: "Image",
+            })
+          }
         />
       )}
 
       <div className="proposal-header">
         <Heading
           style={{
-            ...headingStyle,
+            ...headingStyles,
             textAlign: "center",
             fontSize: 34,
           }}
+          onClick={() =>
+            setSelected({
+              id: "cover-title",
+              type: "Heading",
+            })
+          }
         >
           {proposal.coverTitle || proposal.projectName || "Business Proposal"}
         </Heading>
 
         <Paragraph
           style={{
+            ...paragraphStyles,
             textAlign: "center",
             marginBottom: 35,
           }}
+          onClick={() =>
+            setSelected({
+              id: "cover-subtitle",
+              type: "Paragraph",
+            })
+          }
         >
           {proposal.coverSubtitle}
         </Paragraph>
 
         <Heading
-          style={headingStyle}
+          style={headingStyles}
           onClick={() =>
             setSelected({
-              id: "title",
+              id: "project-title",
               type: "Heading",
             })
           }
@@ -306,38 +591,62 @@ const BaseProposal = ({ theme = "agency" }) => {
           {proposal.projectName || "Website Redesign Proposal"}
         </Heading>
 
-        {proposal.logo ||
-          (brand.logo && (
-            <Image
-              src={proposal.logo || brand.logo}
-              alt="Company Logo"
-              style={{
-                width: 140,
-                marginBottom: 20,
-              }}
-            />
-          ))}
-
-        {proposal.heroImage && (
+        {(proposal.logo || brand.logo) && (
           <Image
-            src={proposal.heroImage}
-            alt="Hero"
+            src={proposal.logo || brand.logo}
+            alt="Company Logo"
             style={{
-              width: "100%",
-              marginTop: 10,
-              marginBottom: 30,
+              ...imageStyles,
+              width: 140,
+              marginBottom: 20,
             }}
+            onClick={() =>
+              setSelected({
+                id: "logo",
+                type: "Image",
+              })
+            }
           />
         )}
 
-        <Paragraph>
+        {proposal.heroImage && (
+          <div
+            onClick={() =>
+              setSelected({
+                id: "hero-image",
+                type: "Image",
+              })
+            }
+          >
+            <Image src={proposal.heroImage} style={imageStyles} />
+          </div>
+        )}
+
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "client-name",
+              type: "Paragraph",
+            })
+          }
+        >
           <strong>Prepared For:</strong> {proposal.clientName || "Client Name"}
         </Paragraph>
 
-        <Paragraph>
+        <Paragraph
+          style={paragraphStyles}
+          onClick={() =>
+            setSelected({
+              id: "company-name",
+              type: "Paragraph",
+            })
+          }
+        >
           <strong>Company:</strong> {proposal.companyName || brand.companyName}
         </Paragraph>
       </div>
+
       <Divider />
 
       {sections.map((section) =>
@@ -345,8 +654,9 @@ const BaseProposal = ({ theme = "agency" }) => {
           <div key={section.id}>{sectionMap[section.id]}</div>
         ) : null,
       )}
-      <Footer />
-    </Document>
+
+      <Footer proposal={proposal} />
+    </div>
   );
 };
 

@@ -7,8 +7,11 @@ const library = [
   { key: "timeline", title: "📅 Timeline" },
   { key: "investment", title: "💰 Investment" },
   { key: "payment", title: "💳 Payment Terms" },
+  { key: "testimonials", title: "⭐ Testimonials" },
+  { key: "faq", title: "❓ FAQ" },
   { key: "about", title: "🏢 Why Choose Us" },
   { key: "nextSteps", title: "🚀 Next Steps" },
+  { key: "signature", title: "✍️ Client Acceptance" },
 ];
 
 const BlockLibrary = () => {
@@ -16,7 +19,10 @@ const BlockLibrary = () => {
 
   return (
     <div className="block-library">
-      <h3>📚 Block Library</h3>
+      <div className="library-header">
+        <h3>📚 Block Library</h3>
+        <small>Toggle proposal sections</small>
+      </div>
 
       {library.map((block) => (
         <button
@@ -24,7 +30,13 @@ const BlockLibrary = () => {
           className={blocks[block.key] ? "active" : ""}
           onClick={() => toggleBlock(block.key)}
         >
-          {block.title}
+          <div className="library-item">
+            <span>{block.title}</span>
+
+            <span className="library-status">
+              {blocks[block.key] ? "✅" : "⭕"}
+            </span>
+          </div>
         </button>
       ))}
     </div>

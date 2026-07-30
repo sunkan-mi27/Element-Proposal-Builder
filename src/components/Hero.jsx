@@ -49,7 +49,7 @@ const Hero = () => {
           <div className="proposal-header">
             <div>
               <h3>Proposal</h3>
-              <span>Proposal Studio</span>
+              <span>Proposal Builder</span>
             </div>
 
             <div className="status">Ready</div>

@@ -48,3 +48,23 @@
     padding: 20px;
   }
 }
+
+.library-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.library-status {
+  font-size: 18px;
+}
+
+.library-header {
+  margin-bottom: 12px;
+}
+
+.library-header small {
+  color: #64748b;
+  display: block;
+  margin-top: 4px;
+}

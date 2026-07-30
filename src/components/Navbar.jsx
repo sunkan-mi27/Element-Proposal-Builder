@@ -7,10 +7,10 @@ const Navbar = () => {
       <div className="nav-container">
         {/* Logo */}
         <Link to="/" className="logo">
-          <div className="logo-box">PS</div>
+          <div className="logo-box">PB</div>
 
           <div className="logo-text">
-            <h2>Element Proposal Studio</h2>
+            <h2>Element Proposal Builder</h2>
             <span>Create proposals that win clients</span>
           </div>
         </Link>

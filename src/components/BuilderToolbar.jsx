@@ -7,23 +7,17 @@ const BuilderToolbar = () => {
         <div className="workspace-icon">📄</div>
 
         <div>
-          <h2>Proposal Studio</h2>
+          <h2>Proposal Builder</h2>
           <p>Professional Proposal Builder</p>
         </div>
       </div>
 
       <div className="toolbar-right">
-        <button className="toolbar-btn">
-          💾 Save
-        </button>
+        <button className="toolbar-btn">💾 Save</button>
 
-        <button className="toolbar-btn">
-          👁 Preview
-        </button>
+        <button className="toolbar-btn">👁 Preview</button>
 
-        <button className="export-btn">
-          📤 Export
-        </button>
+        <button className="export-btn">📤 Export</button>
       </div>
     </header>
   );

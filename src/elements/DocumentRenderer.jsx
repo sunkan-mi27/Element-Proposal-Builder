@@ -10,22 +10,14 @@ import "../styles/documentRenderer.css";
 const DocumentRenderer = () => {
   const { template } = useTemplate();
 
-  switch (template) {
-    case "agency":
-      return <Agency />;
-
-    case "modern":
-      return <Modern />;
-
-    case "premium":
-      return <Premium />;
-
-    case "minimal":
-      return <Minimal />;
-
-    default:
-      return <Agency />;
-  }
+  return (
+    <div id="proposal-preview" className="document-renderer">
+      {template === "agency" && <Agency />}
+      {template === "modern" && <Modern />}
+      {template === "premium" && <Premium />}
+      {template === "minimal" && <Minimal />}
+    </div>
+  );
 };
 
 export default DocumentRenderer;

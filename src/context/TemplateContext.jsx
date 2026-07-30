@@ -3,10 +3,10 @@ import { createContext, useContext, useState } from "react";
 const TemplateContext = createContext();
 
 const templates = {
-  modern: "Modern",
   agency: "Agency",
+  modern: "Modern",
   minimal: "Minimal",
-  startup: "Startup",
+  premium: "Premium",
 };
 
 export const TemplateProvider = ({ children }) => {

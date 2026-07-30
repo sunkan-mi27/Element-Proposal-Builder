@@ -8,7 +8,7 @@ const Home = () => {
       <Hero />
 
       <main>
-        <h1>Proposal Studio</h1>
+        <h1>Proposal Builder</h1>
         <p>Create proposals that win clients.</p>
       </main>
     </>

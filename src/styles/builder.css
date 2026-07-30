@@ -57,8 +57,7 @@
   background: white;
   border-radius: 22px;
   padding: 35px;
-  overflow: auto;
-  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.06);
+  overflow: visible;
   display: grid;
   grid-template-columns: 1fr 320px;
   gap: 24px;
@@ -69,8 +68,7 @@
   background: #f8fafc;
   border-radius: 18px;
   padding: 30px;
-  overflow-y: auto;
-  max-height: calc(100vh - 210px);
+  min-height: calc(100vh - 210px);
 }
 
 .workspace-right aside {

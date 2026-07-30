@@ -30,7 +30,7 @@ const ExportCenter = () => {
     <div className="export-center">
       <h3>📤 Export Center</h3>
 
-      <button disabled={!canExport} onClick={() => exportPDF(proposal)}>
+      <button disabled={!canExport} onClick={exportPDF} >
         📄 Export PDF
       </button>
 
