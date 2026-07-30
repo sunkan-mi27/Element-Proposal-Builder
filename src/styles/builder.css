@@ -38,6 +38,7 @@
 
 .workspace {
   display: grid;
+  grid-template-columns: 380px 1fr;
   gap: 24px;
   background: white;
   border-radius: 22px;
@@ -85,27 +86,46 @@
 @media (max-width: 1000px) {
   .workspace {
     grid-template-columns: 1fr;
-    height: auto;
+  }
+
+  .workspace-right {
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-right aside {
+    border-left: none;
+    border-top: 1px solid #e2e8f0;
+    padding-left: 0;
+    padding-top: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .builder-page {
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    gap: 20px;
+    padding: 12px;
   }
 
-  .proposal-form,
-  .preview-container,
-  .preview,
-  .live-preview {
-    width: 100%;
-    max-width: 100%;
+  .workspace {
+    padding: 15px;
+    gap: 15px;
   }
 
-  .preview-container {
+  .workspace-left {
+    padding: 18px;
+  }
+
+  .workspace-right {
+    padding: 18px;
+    grid-template-columns: 1fr;
+  }
+
+  .workspace-right main {
+    padding: 12px;
+    min-height: auto;
     overflow-x: auto;
+  }
+
+  .workspace-right aside {
+    padding-top: 20px;
   }
 }

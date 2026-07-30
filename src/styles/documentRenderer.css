@@ -5,9 +5,23 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: auto;
 }
 
 .document-renderer > * {
   width: 100%;
   max-width: 900px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .document-renderer {
+    padding: 10px;
+    justify-content: flex-start;
+  }
+
+  .document-renderer > * {
+    width: 100%;
+    max-width: 100%;
+  }
 }
