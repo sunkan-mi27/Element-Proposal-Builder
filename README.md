@@ -1,16 +1,151 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🚀 Elements Proposal Studio
 
-Currently, two official plugins are available:
+> Create beautiful, client-ready proposals in minutes.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Elements Proposal Studio is a modern proposal builder built with **React** and **Elements**. It helps freelancers, agencies, and businesses generate professional proposals with live editing, premium templates, branding customization, pricing tables, and PDF export.
 
-## React Compiler
+This project is being built for the **Built with Elements Challenge**.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Modern Landing Page
+- Rich Text Proposal Editor
+- Live Proposal Preview
+- Premium Proposal Templates
+- Pricing Table Builder
+- Client Information Management
+- Company Branding
+- Cover Page Customization
+- Logo & Image Uploads
+- Digital Signature Support
+- PDF Export
+- Responsive Design
+
+---
+
+## 🖥️ Pages
+
+- Home
+- Features
+- Templates
+- Pricing
+- Sign In
+- Proposal Builder
+
+---
+
+## 🛠️ Tech Stack
+
+- React
+- React Router
+- Context API
+- CSS3
+- HTML5
+- Elements Editor
+- TipTap Rich Text Editor
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+│
+├── components/
+├── context/
+├── pages/
+├── styles/
+├── templates/
+├── utils/
+└── App.jsx
+```
+
+---
+
+## 🎯 Current Progress
+
+✅ Landing Page
+
+✅ Features Page
+
+✅ Templates Page
+
+✅ Pricing Page
+
+✅ Sign In UI
+
+✅ Proposal Builder
+
+✅ Rich Text Editing
+
+✅ Pricing Table
+
+🚧 Premium Templates
+
+🚧 Authentication
+
+🚧 Cloud Storage
+
+🚧 AI Proposal Assistant
+
+🚧 Export Improvements
+
+---
+
+## 💡 Vision
+
+The goal of this project is to provide businesses and freelancers with a premium proposal experience that is simple, elegant, and fast using React Elements. 
+
+Instead of spending hours designing proposals manually, users can focus on winning clients while Elements Proposal Studio handles the presentation.
+
+---
+
+## 🚀 Getting Started
+
+Clone the repository
+
+```bash
+git clone https://github.com/yourusername/elements-proposal-studio.git
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+---
+
+## 📸 Screenshots
+
+Landing page, proposal builder, templates, pricing, and other screenshots will be added as development progresses.
+
+---
+
+## 📄 License
+
+This project is licensed under the #BuiltWithElements @Unlayerapp Challenge
+
+---
+
+## ❤️ Built With
+
+- React
+- Elements
+- TipTap
+- Context API
+
+Built with passion for the **Built with Elements Challenge**
+
+
+Author ✍️🏾
+Sunkanmii
